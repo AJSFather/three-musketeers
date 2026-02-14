@@ -29,8 +29,11 @@ def clean_text(text):
     text = re.sub(r'\d+', "", text)
     
     # remove special characters
-    # text = re.sub(r'[^a-zA-Z0-9\s.]', "", text)
+    text = re.sub(r'[^a-zA-Z0-9\s.]', "", text)
+    
     # remove extra whitespace(s)
+    text = re.sub(r'\s+', ' ', text).strip()
+    
     return text
 
 cleaned_text = clean_text(text)
