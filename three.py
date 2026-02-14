@@ -9,7 +9,7 @@ from collections import Counter
 
 nltk.download('punkt')
 nltk.download('stopwords')
-nltk.download('averaged_perceptron_tagger_eng')
+nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 
 def load_text(file_path):
@@ -17,6 +17,22 @@ def load_text(file_path):
         return f.read()
     
 text = load_text('./three-musketeers.txt')
-# print(text[:100])
+# print(text[:100]) # text loads.
 
+def clean_text(text):
+    start_marker = "Title: The three musketeers"
+    start_index = text.find(start_marker)
+    if start_index != -1:
+        text = text[start_index:]
+    
+    # remove numbers
+    text = re.sub(r'\d+', "", text)
+    
+    # remove special characters
+    # text = re.sub(r'[^a-zA-Z0-9\s.]', "", text)
+    # remove extra whitespace(s)
+    return text
+
+cleaned_text = clean_text(text)
+print(cleaned_text[:100])
 
